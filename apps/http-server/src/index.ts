@@ -2,13 +2,15 @@ import express from 'express';
 import { client } from "@repo/db/client";
 
 const app = express();
+app.use(express.json());
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
 app.post("/sign-up", async (req, res) => {
-    const { username, password } = req.body;
+    const username = req.body.username;
+    const password = req.body.password;
     try {
         const user = await client.user.create({
             data: {
@@ -27,5 +29,5 @@ app.post("/sign-up", async (req, res) => {
 
 
 
-app.listen(3000);
+app.listen(3002);
 
