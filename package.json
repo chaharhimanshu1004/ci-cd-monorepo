@@ -2,8 +2,10 @@
   "name": "bms",
   "private": true,
   "scripts": {
-    "build": "npm run build",
-    "dev": "npm run "
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "prettier": "^3.5.3",
