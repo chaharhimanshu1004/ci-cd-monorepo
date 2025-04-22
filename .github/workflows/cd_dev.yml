@@ -10,12 +10,11 @@ jobs:
     steps:
       - run: |
           echo "Deploying to staging cluster"
-          echo "${{ secrets.SSH_KEY }}" &> ~/ssh_key
-          mkdir -p /home/ubuntu/.ssh
-          ls /home/ubuntu/.ssh
-          touch /home/ubuntu/.ssh/known_hosts
-          echo "${{ secrets.SSH_KNOWN_HOSTS }}" &> /home/ubuntu/.ssh/known_hosts
-          chmod 700 /home/ubuntu/ssh_key
-          ssh -i ~/ssh_key root@64.227.147.124 -t "cd week-25-ci-next-app/ 
-          && git pull origin main 
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa  # Use chmod 600 instead of 700 for private key permissions
+          touch ~/.ssh/known_hosts
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          git pull origin main
+          git status
           
