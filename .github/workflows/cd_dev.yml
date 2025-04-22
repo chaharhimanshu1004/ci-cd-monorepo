@@ -18,7 +18,4 @@ jobs:
           chmod 700 /home/runner/ssh_key
           ssh -i ~/ssh_key root@64.227.147.124 -t "cd week-25-ci-next-app/ 
           && git pull origin main 
-          && echo "here we are" &&
-          && export PATH=/root/.nvm/versions/node/v22.13.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin && npm install -g pnpm 
-          && pnpm install && pnpm run build && pm2 restart web 
-          && pm2 restart http-server && pm2 restart ws"
+          
