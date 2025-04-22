@@ -5,9 +5,11 @@ on :
       - main
 
 jobs: 
-  deploy: 
-    runs on: ubuntu-latest
+  uses: ubuntu-latest
+  redeploying-everything: 
+    name:  Deploying everything to staging env
     steps: 
+      name : Deploying to staging env
       run: | 
         echo "Deploying to staging environment..."
         mkdir -p ~/.ssh
