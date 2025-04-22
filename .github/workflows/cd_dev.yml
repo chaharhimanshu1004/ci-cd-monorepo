@@ -1,0 +1,23 @@
+name: Deploy on staging env
+on : 
+  push : 
+    branches : 
+      - main
+
+jobs: 
+  deploy: 
+    runs on: ubuntu-latest
+    steps: 
+      run: | 
+        echo "Deploying to staging environment..."
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+        chmod 700 ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.SSH_KNOWN_HOSTS }} >> ~/.ssh/known_hosts
+        ssh ubuntu@${{ secrets.SSH_KNOWN_HOSTS }} 'bash -s' <<'ENDSSH'
+        echo "Connected to server!"
+            cd ci-cd-monorepo
+            git pull origin main
+            pnpm install
+
+
